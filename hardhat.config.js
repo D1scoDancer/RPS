@@ -1,11 +1,14 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
-require("@nomiclabs/hardhat-etherscan");
-require("hardhat-gas-reporter");
+require("@nomiclabs/hardhat-waffle")
+require("ethereum-waffle")
+require("hardhat-gas-reporter")
+require("@nomiclabs/hardhat-etherscan")
+require("dotenv").config()
+require("solidity-coverage")
+require("hardhat-deploy")
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
-const ETHERSCAN_API = process.env.ETHERSCAN_AP;
+const PRIVATE_KEY = process.env.PRIVATE_KEY
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL
+const ETHERSCAN_API = process.env.ETHERSCAN_AP
 
 module.exports = {
     solidity: "0.8.17",
@@ -25,4 +28,12 @@ module.exports = {
         outputFile: "gas-report.txt",
         noColors: true,
     },
-};
+    namedAccounts: {
+        deployer: {
+            default: 0,
+        },
+        user: {
+            default: 1,
+        },
+    },
+}
